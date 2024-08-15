@@ -1,4 +1,3 @@
-
 // Función que elimina la clase error de un campo de entrada (input)
 const quitarClase = (input) => {
     // Quita la clase 'error' del campo de entrada
@@ -103,13 +102,23 @@ const validar = (event) => {
 };
 
 // Función que agrega o quita la clase correcto dependiendo de si el campo tiene un valor
-const remover = (input) => {
+export const remover = (input) => {
     if (input.value !== "") {
         input.classList.add("correcto"); // Añade la clase correcto
         input.classList.remove("error"); // Quita la clase error
-        document.querySelector(`#${input.id}-error`).textContent = ""; // Limpia el mensaje de error
+        
     } else {
         input.classList.remove("correcto");
         input.classList.add("error");
     }
 };
+
+// if (input.value !== "") {
+//    input.classList.add("correcto"); // Añade la clase correcto
+//    input.classList.remove("error"); // Quita la clase error
+//    document.querySelector(#${input.id}-error).textContent = ""; // Limpia el mensaje de error
+//} else {
+//    input.classList.remove("correcto");
+//    input.classList.add("error");
+//}
+//};

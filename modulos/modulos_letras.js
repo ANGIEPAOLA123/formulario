@@ -1,4 +1,4 @@
-const sololetras = (event, elemento) => {
+export const sololetras = (event, elemento) => {
     // console.log(elemento.value);
     let Letras = /^[a-zA-ZÀ-ÿ\s]+$/; // Letras y espacios, pueden llevar acentos
     if (Letras.test(event.key)) {
@@ -10,6 +10,3 @@ const sololetras = (event, elemento) => {
     // if(event.keyCode < 97 || event.keyCode > 122) 
     // event.preventDefault();
 };
-
-
-export default  sololetras;

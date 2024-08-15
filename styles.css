@@ -1,26 +1,63 @@
 *{
-    margin: 5px;
+    margin: 0;
     padding: 0;
     box-sizing: border-box;
-    border-radius: 15px;
+}
+
+.contenedor_principal {
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+.mt-40 {
+    margin-top: 40px;
+}
+
+.mb-40 {
+    margin-bottom: 40px;
+}
+
+.layout {
+    display: grid;
+    grid-template-areas: "form grid-container";
+    grid-template-columns: 400px 1fr; 
+    gap: 1rem; 
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse; 
+}
+
+th, td{
+    border: 2px solid  #ffa5bb;
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    background-color: #ffb3c6;
 }
 
 form{
-    max-width: 450px;
-    width: 450px;
-    margin: 0 auto;
-    background-color: #cd97ec;
+    background-color: #cd97ec;;
+    border:  solid 5px #ffd5ef;
     display: flex;
     flex-direction: column;
     padding: 30px;
     gap: 14px;
+    border-radius: 10px;
 }
 
 input, select, button{
     padding: 12px;
-    border:  solid 2px #ffd5ef;
+    border:solid 2px#ffd5ef;
     border-radius: 8px;
-    outline: none;
+    outline: none; 
+}
+
+button{
+    margin-top: 30px;
 }
 
 button{
@@ -28,22 +65,27 @@ button{
     color: white;
     cursor: pointer;
 }
+
 button:hover{
     background-color: #ffbae0;
-    color: #43434338;
-
-}
-label{
     color: white;
+}
+
+label{
+    color:  #000000;
     font-size: 16px;
-    display: flex;
-    
 }
-.error{
-    border: solid 1px rgb(241, 129, 129);
+
+.error {
+    border: solid 2px #bd0003;
 }
-.correcto{
-    border:solid 1px rgb(76, 255, 76);
+
+.correcto {
+    border: solid 2px #5ccb5f;
+}
+
+.error-message {
+    color: #bd0003;
 }
 
 .button__checkbox{
@@ -51,4 +93,10 @@ label{
     justify-content: center;
     align-items: center;
     gap: 10px;
+    margin-top: 20px;
+}
+
+button[disabled] {
+    cursor: not-allowed;
+    opacity: 0.5; /* Para que se vea deshabilitado */
 }

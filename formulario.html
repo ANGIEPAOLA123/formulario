@@ -4,16 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <label for="tipodocumento">Tipo de documento:</label>
-            <select id="tipodocumento" required>
-                <option value="0">Selecciona el tipo de documento...</option>
-                <option value="1">Cédula de ciudadanía</option>
-                <option value="2">Tarjeta de identidad</option>
-                <option value="3">Cédula extranjería</option>
-            </select>
-            <span class="error-message" id="tipodocumento-error" style="color: #bd0003;"></span>
+    <!-- Formulario de validación -->
+    <div class="contenedor_principal">
+        <form class="form" novalidate>
+            <!-- Campo del nombre completo -->
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" autocomplete="off" placeholder="Ingresa tus nombres" required>
+            
+            <!-- Botón de enviar -->
+            <button id="boton" type="submit">Enviar</button>
+        </form>
+    </div>
+    
+    <script src="formulario_nuevo.js" type="module"></script>
 </body>
 </html>
