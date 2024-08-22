@@ -1,3 +1,4 @@
+// Validar correo electrónico
 export const correoelectronico = (event, elemento) => {
     let validarcorreo = /^[\w-._+]+@[\w-._+]+\.[a-zA-Z]{2,}$/;
 
@@ -17,5 +18,3 @@ export const correoelectronico = (event, elemento) => {
         alert("El correo electrónico ingresado no es válido."); // Muestra mensaje solo si el correo no es válido
     }
 };
-
-

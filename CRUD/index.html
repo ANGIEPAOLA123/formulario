@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FORMULARIO DE VALIDACIONES</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
     <!-- Formulario de validación -->
     <div class="contenedor_principal layout mt-40 mb-40">
         <form class="form" novalidate>
+            <input type="hidden" id="user">
             <!-- Campo del nombre completo -->
             <label for="nombres">Nombres:</label>
             <input type="text" id="nombres" autocomplete="off" placeholder="Ingresa tus nombres" required>
@@ -87,9 +88,11 @@
             <td class="dirección"></td>
             <td class="tipo_de_documento"></td>
             <td class="número_de_documento"></td>
-            <td class="acciones">
-                <button class="eliminar" type="submit">Eliminar</button>
-                <button class="modificar" type="submit">Modificar</button>
+            <td>
+                <div>
+                    <button class="eliminar" type="submit">Eliminar</button>
+                    <button class="modificar" type="submit">Modificar</button>
+                </div>
             </td>
             </tr>
         </template>

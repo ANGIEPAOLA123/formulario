@@ -1,6 +1,6 @@
 import { sololetras } from "./modulos/modulos_letras.js";
 import is_valid from "./modulos/modulo_valid.js";
-import { remover } from "./modulos/modulo_validacion.js";
+import { remover } from "./modulos/modulo_validaciones.js";
 
 const $formulario = document.querySelector("form");
 const nombre = document.querySelector("#nombre");
@@ -20,7 +20,7 @@ $formulario.addEventListener("submit", (event) => {
   if (response) {
     boton.setAttribute("disabled", "");
 
-    fetch('http://localhost:3000/documento', {
+    fetch('http://localhost:3000/documents', {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
