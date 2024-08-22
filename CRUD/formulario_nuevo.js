@@ -7,7 +7,7 @@ const nombre = document.querySelector("#nombre");
 const boton = document.querySelector("#boton");
 
 
-// Validación del nombre 
+
 nombre.addEventListener("keypress", (event) => {
     sololetras(event, nombre);
 });
@@ -37,7 +37,7 @@ $formulario.addEventListener("submit", (event) => {
   }
 });
 
-// Se añade un listener para el evento keyup en cada uno de los campos. Cuando se suelta una tecla, se llama a la función remover para verificar el estado del campo.
+
 [nombre].forEach(input => {
   input.addEventListener("keyup", () => {
       remover(input);

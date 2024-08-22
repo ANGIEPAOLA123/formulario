@@ -24,13 +24,11 @@ const boton = document.querySelector("#boton");
 const tbody = document.querySelector("tbody");
 const user = document.querySelector("#user");
 
-// TEMPLATE, // Obtener el template y su contenido
+
 const $template = document.querySelector("#template").content;
 
-// FRAGMENTOS
+
 const $fragmento = document.createDocumentFragment();
-
-
 
 [nombres, apellidos, correo, telefono, direccion, documento].forEach(input => {
     input.addEventListener("keyup", () => {
@@ -38,14 +36,13 @@ const $fragmento = document.createDocumentFragment();
     });
 });
 
-
 tipodocumento.addEventListener("change", () => {
     if (tipodocumento.value === "") {
-       
+        
         tipodocumento.classList.add("error");
         tipodocumento.classList.remove("correcto");
     } else {
-      
+       
         tipodocumento.classList.remove("error");
         tipodocumento.classList.add("correcto");
     }
@@ -65,7 +62,6 @@ const documentos = () => {
         fragment.appendChild( optiondeterminada); 
 
         data.forEach(element => {
-            
             let option = document.createElement("option");
             option.value = element.id;
             option.textContent = element.nombre;
@@ -75,18 +71,44 @@ const documentos = () => {
     })
 }
 
-// LISTAR LOS USUARIOS 
-const listarUsuarios = async () => {
-    const data = await solicitud("users");
+
+const listarUsuarios = async (page) => {
+    const _page = page ? page : 1;
+    const data = await solicitud(`users?_page=${_page}&_per_page=5`);
     const documentos = await solicitud("documents");
 
-    data.forEach(element => {
+    console.log(data)
+
+    const nav = document.querySelector(".navegacion");
+
+    const first = data.first;
+    const prev = data.prev;
+    const next = data.next;
+    const last =  data.last;
+
+    console.log("first" , first);
+    console.log("prev" , prev);
+    console.log("next" , next);
+    console.log("last" , last);
+
+    nav.querySelector(".first").disabled = prev ? false : true;
+    nav.querySelector(".prev").disabled = prev ? false : true;
+    nav.querySelector(".next") .disabled = next ? false : true;
+    nav.querySelector(".last") .disabled = next ? false : true;
+
+
+    nav.querySelector(".first").setAttribute("data-first" , first);
+    nav.querySelector(".prev").setAttribute("data-prev" , prev); 
+    nav.querySelector(".next").setAttribute("data-next" , next);
+    nav.querySelector(".last").setAttribute("data-last",last);
+
+    data.data.forEach(element => {
         
         const documento_nombre = documentos.find((documento) => documento.id === element.tipodocumento).nombre;
         
         $template.querySelector("tr").id = `user_${element.id}`;
 
-       
+    
        $template.querySelector('.nombre').textContent = element.nombres;
        $template.querySelector('.apellidos').textContent = element.apellidos;
        $template.querySelector('.correo_Electrónico').textContent = element.correo;
@@ -99,7 +121,6 @@ const listarUsuarios = async () => {
        $template.querySelector(".eliminar").setAttribute("data-id", element.id)
 
 
-     
        const clone = document.importNode($template, true);
 
        $fragmento.appendChild(clone);
@@ -168,7 +189,6 @@ const guardar = (data) => {
 }
 
 const actualiza = async (data) =>{
-    //console.log(data);
     const response = await enviar (`users/${user.value}`, {
         method: 'PUT',
         body: JSON.stringify(data),
@@ -176,8 +196,8 @@ const actualiza = async (data) =>{
             'Content-type': 'application/json; charset=UTF-8',
         },
     })
-    limpiarformulario(); // limpiamos el formulario 
-    editRow(response); // modificamos el tr
+    limpiarformulario(); 
+    editRow(response); 
 }
 
 const eliminar = async (element) => {
@@ -204,7 +224,7 @@ const eliminar = async (element) => {
                 }
             });
 
-            // Elimina la fila de la tabla
+            
             tr.remove();
         }
     } else {
@@ -212,27 +232,10 @@ const eliminar = async (element) => {
     }
 };
 
-// API es como un conjunto de instrucciones para comunicarse entre sistemas, mientras que API RESTful es como un conjunto de instrucciones específicas para comunicarse entre
-// sistemas utilizando el protocolo HTTP, como un manual de instrucciones para una cosa específica.
 
-// HTTP es un protocolo de solicitud-respuesta, lo que significa que un cliente(como un navegador web) envia una solicitud a un servidor y el servidor responde con los datos
-// solicitados.
-
-// - GET /Obtener lista de usuarios.
-// - GET / Obtener usuario con ID 123.
-// - POST / Crear nuevo usuario.
-// - PUT / Actualizar usuario con ID 123.
-// - DELETE / Eliminar usuario con ID 123.
-// PATCH se utiliza para modificar una parte de un recurso existente (dejando otros aspectos del mismo sin modificar). 
-// La operación PUT se utiliza para sustituir todo el contenido de un recurso existente por nuevos datos.
-
-// Con setter, asignas un valor.
-// Con getter, lo recibes.
-
-// buscar datos y actualizar los campos del formulario
 const buscar = async (elemento) => {
     try {
-        // Obtén los datos directamente de la función enviar
+        
         const data = await enviar(`users/${elemento.dataset.id}`, {
             method: 'PATCH',
             headers: {
@@ -260,7 +263,7 @@ const editRow = (data) => {
 const loadFrom = (data) => {
     const {
     id,
-    nombres: user_nombres, // ALIAS
+    nombres: user_nombres, 
     apellidos: user_apellidos,
     telefono: user_telefono,
     direccion: user_direccion,
@@ -269,7 +272,6 @@ const loadFrom = (data) => {
     correo: user_correo,
     } = data;
 
-    // Actualiza los valores de los campos del formulario
     user.value = id;
     nombres.value = user_nombres;
     apellidos.value = user_apellidos;
@@ -285,7 +287,7 @@ const loadFrom = (data) => {
 
 $formulario.addEventListener('submit', save );
 
-// Manejar el estado del botón de enviar según el checkbox
+
 addEventListener("DOMContentLoaded", (event) => {
     listarUsuarios();
     documentos();
@@ -300,33 +302,28 @@ politicas.addEventListener("change", function (e) {
     } 
 });
 
-// Agrega el evento de submit al formulario
-// document.querySelector("form").addEventListener("submit", validar);
 
-// Validaciones específicas
-
-// Validación del documento
 documento.addEventListener("keypress", solonumeros);
 
-// Validación del telefono
+
 telefono.addEventListener("keypress", solonumeros);
 
-// Validación del nombre 
+
 nombres.addEventListener("keypress", (event) => {
     sololetras(event, nombres);
 });
 
-// Validación del apellido
+
 apellidos.addEventListener("keypress", (event) => {
     sololetras(event, apellidos);
 });
 
-// Validación del correo electrónico
+
 correo.addEventListener("blur", (event) => {
     correoelectronico(event, correo);
 });
 
-// EVENTO CLICK 
+
 document.addEventListener("click", (event) => {
     if(event.target.matches(".modificar")){
         buscar(event.target);
@@ -334,10 +331,50 @@ document.addEventListener("click", (event) => {
 });
 document.addEventListener("click", (event) => {
     if(event.target.matches(".eliminar")){
-        eliminar(event.target);
+        eliminar(event.target);    
     }
+    if(event.target.matches(".first")){
+        const nodos = tbody;
+        const first= event.target.dataset.first;
+
+        while (nodos.firstChild){
+            nodos.removeChild(nodos.firstChild)
+        }
+
+        listarUsuarios(first);
+    }
+    if(event.target.matches(".prev")){
+        const nodos = tbody;
+        const prev= event.target.dataset.prev;
+
+        while (nodos.firstChild){
+            nodos.removeChild(nodos.firstChild)
+        }
+
+        listarUsuarios(prev);
+    }
+    if(event.target.matches(".next")){
+        const nodos = tbody;
+        const next= event.target.dataset.next;
+
+        while (nodos.firstChild){
+            nodos.removeChild(nodos.firstChild)
+        }
+
+        listarUsuarios(next);
+    }
+   
+    if(event.target.matches(".last")){
+        const nodos = tbody;
+        const last = event.target.dataset.last;
+
+        while (nodos.firstChild){
+            nodos.removeChild(nodos.firstChild)
+        }
+
+        listarUsuarios(last);
+    }
+
+
 });
 
-// toca hacer prmosas 
-// formulario nuevvo que lleno el slecter
-// colocarle un aleas a la destruraccion 

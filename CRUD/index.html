@@ -4,61 +4,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FORMULARIO DE VALIDACIONES</title>
-    <link rel="stylesheet" href="estilos.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Formulario de validación -->
+  
     <div class="contenedor_principal layout mt-40 mb-40">
         <form class="form" novalidate>
             <input type="hidden" id="user">
-            <!-- Campo del nombre completo -->
+        
             <label for="nombres">Nombres:</label>
             <input type="text" id="nombres" autocomplete="off" placeholder="Ingresa tus nombres" required>
             <span class="error-message" id="nombres-error" style="color: #bd0003;"></span>
             
-            <!-- Campo de los apellidos -->
+         
             <label for="apellidos">Apellidos:</label>
             <input type="text" id="apellidos" autocomplete="off" placeholder="Ingresa tus apellidos" required>
             <span class="error-message" id="apellidos-error" style="color: #bd0003;"></span>
             
-            <!-- Campo de ingresar el correo electrónico-->
+        
             <label for="correo">Correo Electrónico:</label>
             <input type="email" id="correo" autocomplete="off" placeholder="Ingresa tu correo Electrónico" required>
             <span class="error-message" id="correo-error" style="color: #bd0003;"></span>
-            
-            <!-- Campo del teléfono -->
+      
             <label for="telefono">Teléfono:</label>
             <input type="tel" id="telefono" autocomplete="off" placeholder="Ingresa tu teléfono" required>
             <span class="error-message" id="telefono-error" style="color: #bd0003;"></span>
             
-            <!-- Campo de la dirección -->
+        
             <label for="direccion">Dirección:</label>
             <input type="text" id="direccion" autocomplete="off" placeholder="Ingresa tu dirección" required>
             <span class="error-message" id="direccion-error" style="color: #bd0003;"></span>
             
-            <!-- Campo de ingresar documento-->
+        
             <label for="tipodocumento">Tipo de documento:</label>
             <select id="tipodocumento" required>
-                <!-- <option value="">Selecciona el tipo de documento...</option>
-                <option value="1">Cédula de ciudadanía</option>
-                <option value="2">Tarjeta de identidad</option>
-                <option value="3">Cédula extranjería</option> -->
+                
             </select>
             <span class="error-message" id="tipodocumento-error" style="color: #bd0003;"></span>
             
-            <!-- Campo de ingresar número de documento-->
+           
             <label for="documento">Número de documento:</label>
             <input type="text" id="documento" autocomplete="off" placeholder="Ingresa número de documento" required>
             <span class="error-message" id="documento-error" style="color: #bd0003;"></span>
             
-            <!-- Campo de aceptar políticas-->
+   
             <div class="button__checkbox">
                 <input type="checkbox" id="politicas" required>
                 <label for="politicas">Acepta las políticas de uso</label>
             </div>
             <span class="error-message" id="politicas-error" style="color: #bd0003;"></span>
             
-            <!-- Botón de enviar -->
+    
             <button id="boton" type="submit">Enviar</button>
         </form>
 
@@ -97,8 +93,16 @@
             </tr>
         </template>
 
+    <nav class="navegacion">
+        <button  class="first">primero</button>
+        <button class="prev"> previo</button>
+        <button class="next">siguiente</button>
+        <button class="last">ultimo</button>
+
+    </nav>
+
     </div>
 
-    <script src="formulario.js" type="module"></script>
+    <script src="app.js" type="module"></script>
 </body>
 </html>
